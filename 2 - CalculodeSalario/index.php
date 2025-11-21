@@ -21,8 +21,8 @@
 
 // Comprobar si hay peticion POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si se encuentra una petición por POST
-    include_once "info.php"; // Cargamos la info del formulario
+    include_once "php/info.php"; // Cargamos la info del formulario
 } else {
-    include_once "form.html"; // Cargamos el formulario
+    include_once "php/form.html"; // Cargamos el formulario
 }
 ?>

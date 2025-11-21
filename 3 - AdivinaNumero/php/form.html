@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de número</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: auto;
+            gap: 10px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            width: 100px;
+            align-self: center;
+        }
+
+        input[type="number"] {
+            width: 100%;
+        }
+        input[type="submit"] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form action="/3-AdivinaNumero/index.php" method="post">
+        <label for="numero">
+            Adivina un número entre 1 y 50:
+            <input type="number" name="numero" id="numero" min="1" max="50" required>
+        </label>
+        <input type="submit" value="Adivinar">
+    </form>
+</body>
+</html>

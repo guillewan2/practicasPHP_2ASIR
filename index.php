@@ -1,5 +1,6 @@
 <?php
-exec('ls', $directorio);
+$directorio = scandir(__DIR__);
+usort($directorio, 'strnatcmp'); // Ordenar de forma natural
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,11 +39,13 @@ exec('ls', $directorio);
     <h1>Ejercicios de PHP</h1>
     <ul>
         <?php
-        foreach ($directorio as $archivo) {
-            if ($archivo != 'index.php' && $archivo != 'README.md') {
-                echo "<li><a href='$archivo'>$archivo</a></li>";
+        $excluidos = ['index.php', 'README.md', '.', '..', '.git']; //Archivos a excluir
+        foreach ($directorio as $archivo) { 
+            if (!in_array($archivo, $excluidos)) { // Si no está en la lista de excluidos
+                echo "<li><a href='$archivo'>$archivo</a> - <a href='https://github.com/guillewan2/practicasPHP_2ASIR/tree/main/$archivo'>Github</a></li>";
             }
         }
         ?>
+    </ul>
 </body>
 </html>
