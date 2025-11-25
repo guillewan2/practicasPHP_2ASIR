@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de número</title>
+    <title>Login</title>
     <style>
         * {
             box-sizing: border-box;
@@ -37,7 +37,7 @@
             align-self: center;
         }
 
-        input[type="number"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
         }
         input[type="submit"] {
@@ -46,12 +46,16 @@
     </style>
 </head>
 <body>
-    <form action="./index.php" method="post">
-        <label for="numero">
-            Adivina un número entre 1 y 50:
-            <input type="number" name="numero" id="numero" min="1" max="50" required>
+    <form action="/4 - ComprobacionesBD/login.php" method="post">
+        <label for="usuario">
+            Usuario:
+            <input type="text" name="usuario" id="usuario" required>
         </label>
-        <input type="submit" value="Adivinar">
+        <label for="clave">
+            Contraseña:
+            <input type="password" name="clave" id="clave" required>
+        </label>
+        <input type="submit" value="Iniciar sesión">
     </form>
 </body>
 </html>

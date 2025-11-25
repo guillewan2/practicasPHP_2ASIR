@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de número</title>
+    <title>Generación de numeros primos</title>
     <style>
         * {
             box-sizing: border-box;
@@ -46,12 +46,12 @@
     </style>
 </head>
 <body>
-    <form action="./index.php" method="post">
-        <label for="numero">
-            Adivina un número entre 1 y 50:
-            <input type="number" name="numero" id="numero" min="1" max="50" required>
+    <h1>Hasta qué numero quieres los numeros primos?</h1>
+    <form action="/6 - NumerosPrimos/generar.php" method="post">
+        <label for="limite">
+            Introduce un número positivo:
+            <input type="number" name="limite" id="limite" required min="2">
         </label>
-        <input type="submit" value="Adivinar">
-    </form>
+        <input type="submit" value="Generar">
 </body>
 </html>
