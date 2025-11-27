@@ -1,0 +1,2 @@
+# Ejercicio Arrays
+Desarrollar un programa en PHP, tal que, dados dos arrays que contienen los nombres y los apellidos respectivamente, me retorne otro array en el cual se contengan los nombres y los apellidos
