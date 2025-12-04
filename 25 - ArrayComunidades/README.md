@@ -1,0 +1,2 @@
+# Práctica 4.10
+Desarrollar un programa en PHP, tal que, dado un array que contiene las provincias de la comunidad de Andalucía y la población de cada una, me muestre por pantalla el nombre de la ciudad y la población. También se precisa otra salida por pantalla que indique si la provincia es de Andalucía Occidental o de Andalucía Oriental. Por otro lado, me solicitan desde nuestra dirección la población que tiene Andalucía Occidental y Andalucía Oriental con la idea de incorporar 2 CPD en cada una de las zonas

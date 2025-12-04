@@ -1,0 +1,2 @@
+# DatosCifrados
+Desarrollar un programa en PHP, tal que, dado un formulario HTML + CSS en el que se pida el nombre, los apellidos, la edad y una clave, se reenviarán a otra página .php donde se visualizará por pantalla los datos de este usuario y me mostrará la clave cifrada 
