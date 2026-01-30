@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+      if: hashFiles('composer.json') != ''
+
+    - name: Check PHP syntax
+      run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Build Docker image
+      run: docker build . --file Dockerfile --tag my-php-app:$(date +%s)
