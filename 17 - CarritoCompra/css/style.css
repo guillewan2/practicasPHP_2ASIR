@@ -1,0 +1,163 @@
+/* * Guillermo Torres
+ * Date: Fri 30 Jan 2026
+ * Time: 18:35
+ * Description: Hoja de estilos para el carrito de compra (Grid Layout)
+ * Distribution: Arch Linux
+ */
+
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;       /* Cian neón */
+    --accent-hover: #0ea5e9;
+    --price-color: #4ade80;        /* Verde para precios */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* --- Layout Principal de la Tienda --- */
+.tienda {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Grid responsivo: crea tantas columnas como quepan de mínimo 300px */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* El título ocupa todo el ancho de la rejilla */
+.tienda h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin: 2rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* --- Tarjeta de Producto --- */
+.producto {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
+
+/* Contenedor de imagen para mantener proporción */
+.imagen {
+    width: 100%;
+    height: 300px; /* Altura fija para uniformidad */
+    overflow: hidden;
+    background-color: #000;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para llenar el espacio sin estirar */
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.producto:hover .imagen img {
+    transform: scale(1.05); /* Zoom sutil al pasar el ratón */
+}
+
+/* Detalles del producto */
+.producto h2 {
+    font-size: 1.25rem;
+    margin: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.producto p {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    flex-grow: 1; /* Empuja el precio y botón hacia abajo */
+    margin-bottom: 1rem;
+}
+
+/* Precio */
+.price {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    color: var(--price-color) !important; /* Forzamos color verde */
+    font-weight: bold;
+    text-align: right;
+    margin-top: auto; /* Asegura que esté al final del texto */
+    padding-bottom: 0.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+/* --- Botones --- */
+form {
+    padding: 0 1rem 1.5rem;
+    display: grid;
+}
+
+.btn {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.75rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Ajustes Responsive */
+@media (max-width: 600px) {
+    .tienda {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        padding: 10px;
+    }
+    
+    .imagen {
+        height: 250px;
+    }
+}
