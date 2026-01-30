@@ -11,7 +11,8 @@
     permite aprender la lógica de lo
     que estoy haciendo, perdon :(
         ----------------------      */
-
+# Importamos las funciones:
+require_once "funciones.php";
 # Para hacer esto, vamos a usar sesiones. Lo primero es crear una sesión
 session_start();
 
@@ -21,9 +22,16 @@ $idSesion = session_id();
 # Comprobamos si ha llegado el reset
 if (isset($_GET['reset'])) {
     session_destroy(); # Destruimos la sesión
-    header("Location: ."); # Redirigimos a la pagina actual para que no se ejecute todo otra vez
+    header("Location: /16 - ContadorSesion/"); # Redirigimos a la pagina actual para que no se ejecute todo otra vez
     exit; # Salimos de ESTE php
 }
+# Comprobamos si ha llegado el matar
+if (isset($_GET['matar'])) {
+    killSession();
+    header("Location: /16 - ContadorSesion/"); # Redirigimos a la pagina actual para que no se ejecute todo otra vez
+    exit; # Salimos de ESTE php
+}
+
 
 ?>
 <!-- HTML -->
@@ -35,7 +43,7 @@ if (isset($_GET['reset'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de apertura</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/16 - ContadorSesion/style.css">
 
 </head>
 
@@ -78,12 +86,13 @@ if (isset($_GET['reset'])) {
                 Para los emojis, se puede usar FontAwesome (Lo que he usado)
             </p>
             <div class="botonreset"><a href="?reset">Resetear Contador</a></div>
+            <div class="matarsesion"><a href="?matar">Terminar la Sesión</a></div>
 
             <p id="id">Tu id de sesión es: <?=  $idSesion?></p>
 
         </div>
     <?php
-        $_SESSION['contador'] += 0.5;
+        $_SESSION['contador'] += 1;
 
     endif;
     ?>
