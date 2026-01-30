@@ -1,0 +1,161 @@
+/* * Guillermo Torres
+ * Date: Fri 30 Jan 2026
+ * Time: 17:45
+ * Description: Estilos completos para contador, bloque pre, botón reset e ID de sesión
+ * Distribution: Arch Linux
+ */
+
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --error-color: #fb7185;
+    --code-bg: #0f172a;
+    --inline-code-bg: #334155;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Contenedores principales */
+.error, .contador {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    max-width: 650px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Iconos de FontAwesome */
+i {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.error i {
+    color: var(--error-color);
+    filter: drop-shadow(0 0 8px rgba(251, 113, 133, 0.4));
+}
+
+.contador i {
+    color: var(--accent-color);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+/* Tipografía */
+h1, h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.25rem;
+    color: var(--accent-color);
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    text-align: justify;
+    font-size: 0.95rem;
+}
+
+/* Código e ID */
+code {
+    background-color: var(--inline-code-bg);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+}
+
+pre {
+    background-color: var(--code-bg);
+    color: var(--accent-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    text-align: left;
+    overflow-x: auto;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    margin: 1rem 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* Identificador de sesión */
+#id {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: center;
+    opacity: 0.7;
+    word-break: break-all;
+}
+
+/* Botón Reset */
+.botonreset {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.botonreset a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 0.5rem;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.botonreset a:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Ajustes móviles */
+@media (max-width: 480px) {
+    .error, .contador { padding: 1.5rem; }
+    h1 { font-size: 1.75rem; }
+}
