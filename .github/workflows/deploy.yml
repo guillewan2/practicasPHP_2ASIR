@@ -1,0 +1,86 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          timeout: 120s
+          command_timeout: 15m
+          script: |
+            set -e
+
+            PROJECT_DIR="/admin/practicasPHP_2ASIR"
+            
+            echo "🚀 Starting deployment..."
+            
+            # 1. Verification
+            if [ ! -d "$PROJECT_DIR" ]; then
+                echo "❌ Project directory not found at $PROJECT_DIR"
+                exit 1
+            fi
+            
+            cd "$PROJECT_DIR"
+            
+            # 2. Update Code
+            echo "📥 Pulling latest changes from GitHub..."
+            git fetch --all
+            git reset --hard origin/main
+            
+            # 3. Rebuild
+            echo "🐳 Rebuilding containers..."
+            # Stop first to ensure clean state
+            docker compose down || true
+            
+            # Build and Start
+            if ! docker compose up -d --build --remove-orphans; then
+                echo "❌ Docker build/start failed!"
+                exit 1
+            fi
+            
+            # 4. Cleanup
+            echo "🧹 Cleaning up unused Docker images..."
+            docker image prune -f
+            
+            # 5. Health Check Loop
+            echo "⏳ Waiting for service to become healthy (max 60s)..."
+            MAX_RETRIES=12
+            RETRY=0
+            HEALTHY=0
+            
+            while [ $RETRY -lt $MAX_RETRIES ]; do
+                # Check for 200 OK from localhost:8084
+                if curl -sf --max-time 2 http://localhost:8084 > /dev/null; then
+                    echo "✅ Health check passed!"
+                    HEALTHY=1
+                    break
+                fi
+                echo "Testing connection... ($RETRY/$MAX_RETRIES)"
+                sleep 5
+                RETRY=$((RETRY+1))
+            done
+            
+            if [ $HEALTHY -eq 0 ]; then
+                echo "❌ Health check FAILED after 60 seconds."
+                echo "📜 Recent logs:"
+                docker compose logs --tail=50 web
+                exit 1
+            fi
+            
+            echo "✅ Deploy completed successfully!"
