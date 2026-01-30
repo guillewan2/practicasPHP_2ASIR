@@ -60,7 +60,7 @@ $productos = [
                 </div>
                 <h2><?= $producto["name"] ?></h2>
                 <p><?= $producto["description"] ?>
-                <!-- AQUI ME HE PARADO --> 
+                <!-- AQUI ME HE PARADO -->
                 <p class="price"><?= number_format($producto["price"], 2) ?>€</p>
                 <form method="post" action="/?action=addToCart&id=<?= $id ?>"
                     style="display: inline"> 
