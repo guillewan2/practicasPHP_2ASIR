@@ -12,11 +12,12 @@ usort($directorio, 'strnatcmp'); // Ordenar de forma natural
     <style>
         :root {
             --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-color: #e2e8f0;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
             --accent-color: #38bdf8;
-            --hover-bg: rgba(56, 189, 248, 0.1);
-            --border-color: rgba(148, 163, 184, 0.1);
+            --hover-color: #0ea5e9;
+            --border-color: #334155;
         }
 
         body {
@@ -29,100 +30,104 @@ usort($directorio, 'strnatcmp'); // Ordenar de forma natural
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
         }
 
         h1 {
-            font-weight: 600;
-            font-size: 3rem;
+            font-weight: 700;
+            font-size: 2.5rem;
             margin-bottom: 40px;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent-color);
             text-align: center;
+            letter-spacing: -0.05em;
         }
 
         ul {
             list-style-type: none;
             padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
         }
 
         li {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 12px;
         }
 
         li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
             border-color: var(--accent-color);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        li::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        li:hover::before {
-            transform: translateX(100%);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         a.project-link {
             text-decoration: none;
             color: var(--text-color);
             font-size: 1.1rem;
-            font-weight: 400;
-            flex-grow: 1;
+            font-weight: 600;
             display: flex;
             align-items: center;
         }
 
         a.project-link::before {
-            content: '📁';
+            content: '📂';
             margin-right: 10px;
             font-size: 1.2rem;
+            filter: grayscale(100%);
+            transition: filter 0.2s;
+        }
+        
+        li:hover a.project-link::before {
+             filter: none;
         }
 
         a.github-link {
             text-decoration: none;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            border: 1px solid var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            margin-left: 15px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.2s;
+            align-self: flex-start;
         }
 
         a.github-link:hover {
-            background: var(--accent-color);
-            color: #fff;
+            color: var(--accent-color);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .mention {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .ai-notice {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            font-style: italic;
         }
 
         @media (max-width: 600px) {
@@ -144,11 +149,16 @@ usort($directorio, 'strnatcmp'); // Ordenar de forma natural
             if (!in_array($archivo, $excluidos)) {
                 echo "<li>
                         <a class='project-link' href='$archivo'>$archivo</a> 
-                        <a class='github-link' href='https://github.com/guillewan2/practicasPHP_2ASIR/tree/main/$archivo' target='_blank'>Ver en GitHub</a>
+                        <a class='github-link' href='https://github.com/guillewan2/practicasPHP_2ASIR/tree/main/$archivo' target='_blank'>Ver en GitHub &rarr;</a>
                       </li>";
             }
         }
         ?>
     </ul>
+    <footer>
+        <p>Guillermo Torres</p>
+        <div class="mention">2º CFGS ASIR</div>
+        <p class="ai-notice">Este repositorio lo he hecho a mano menos los diseños de las páginas, que los he hecho con ayuda de la IA, específicamente Gemini 3 Pro</p>
+    </footer>
 </body>
 </html>
