@@ -39,7 +39,7 @@ usort($directorio, 'strnatcmp'); // Ordenar de forma natural
     <h1>Ejercicios de PHP</h1>
     <ul>
         <?php
-        $excluidos = ['index.php', 'README.md', '.', '..', '.git', 'createzip.sh', '.gitignore']; //Archivos a excluir
+        $excluidos = ['index.php', 'README.md', '.', '..', '.git', 'createzip.sh', '.gitignore', 'docker-compose.yml', '.github', 'Dockerfile']; //Archivos a excluir
         foreach ($directorio as $archivo) { 
             if (!in_array($archivo, $excluidos)) { // Si no está en la lista de excluidos
                 echo "<li><a href='$archivo'>$archivo</a> - <a href='https://github.com/guillewan2/practicasPHP_2ASIR/tree/main/$archivo'>Github</a></li>";
