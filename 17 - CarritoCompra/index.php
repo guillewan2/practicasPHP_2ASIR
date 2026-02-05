@@ -6,9 +6,9 @@
 //  Distribution: Arch Linux
 
 /* Importar functions.php e iniciar sesión de cookies */
-require "data/functions.php";
 
 session_start();
+require "data/functions.php";
 /*----------------------------------------------------*/
 
 
@@ -20,7 +20,13 @@ if (isset($_GET['action'])){
             exit;
         case 'addToCart':
             $id = htmlspecialchars($_GET['id']);
-            addtoCart($id); // Funcion definida en functions.php
+            addtoCart($id, $productos); // Funcion definida en functions.php
+            require_once "templates/productos.php";
+            // USAR $_SERVER["REQUEST_URI"] y alguna funcion para limpiar la URL.
+            exit;
+        default:
+            require_once "templates/productos.php";
+            break;
     }
 } else {
     require_once "templates/productos.php";
