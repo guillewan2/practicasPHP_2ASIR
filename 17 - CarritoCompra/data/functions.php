@@ -46,23 +46,24 @@ function calculoRepeticiones(array $array): array
 {
     foreach ($array as $key => $value) {
         if (!isset($repeticiones[$value])) {
-            $repeticiones[$value]=1;
+            $repeticiones[$value] = 1;
         } else {
-            $repeticiones[$value]+=1;
+            $repeticiones[$value] += 1;
         }
     }
 
     return $repeticiones;
-    
 }
 
-function imprimirRepeticiones(array $repeticiones): void {
+function imprimirRepeticiones(array $repeticiones): void
+{
     foreach ($repeticiones as $key => $repeticion) {
         echo "$key => $repeticion | ";
     }
 }
 
-function deleteProduct(array &$array, int $id) {
+function deleteProduct(array &$array, int $id)
+{
     foreach ($array as $key => $element) {
         if ($element == $id) {
             unset($array[$key]);
@@ -70,10 +71,14 @@ function deleteProduct(array &$array, int $id) {
     }
 }
 
-function removeGet(): string {
-    $url="https://www.bing.com/search?q=string+modify&PC=U316&FORM=CHROMN";
-    return substr($url,0,strpos($url, "?"));
+function removeGet(string $url): string
+{
+    return substr($url, 0, strpos($url, "?"));
 }
 
-echo removeGet();
-
+function redirectnoGet(string $loc = '')
+{
+    $url = removeGet($_SERVER['REQUEST_URI']);
+    $url .= $loc;
+    header("Location: $url"); // Para quitar el GET de la función.
+}

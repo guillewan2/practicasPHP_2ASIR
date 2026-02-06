@@ -6,31 +6,32 @@
 //  Distribution: Arch Linux
 
 /* Importar functions.php e iniciar sesión de cookies */
-
 session_start();
 require "data/functions.php";
 /*----------------------------------------------------*/
 
 
-if (isset($_GET['action'])){
+if (isset($_GET['action'])) {
     $action = htmlspecialchars($_GET['action']);
-    switch($action) {
+    switch ($action) {
         case 'cart':
-            require_once "templates/cart.php";
+            if (countCart()!=0) {
+                require "templates/cart.php";
+            } else {
+                require "templates/productos.php";
+            }
             exit;
         case 'addToCart':
             $id = htmlspecialchars($_GET['id']);
             addtoCart($id, $productos); // Funcion definida en functions.php
-            require_once "templates/productos.php";
-            // ¿strtok?
+            redirectnoGet();
             exit;
         case 'delete':
             $id = htmlspecialchars($_GET['id']);
-            deleteProduct($_SESSION['cart'],$id);
-            switch($_GET['from']){
+            deleteProduct($_SESSION['cart'], $id);
+            switch ($_GET['from']) {
                 case 'cart':
-                    require_once "templates/cart.php";
-                    exit;
+                    redirectnoGet('?action=cart');
                 default:
                     break;
             }
