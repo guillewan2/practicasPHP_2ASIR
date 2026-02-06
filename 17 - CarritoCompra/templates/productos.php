@@ -14,7 +14,7 @@
 <body>
     <!-- TIENDAAAAA -->
     <div class="tienda">
-        <h1>Tienda <?= countCart() ?></h1>
+        <h1>Tienda</h1>
         <?php
         foreach ($productos as $idProducto => $producto):
         ?>
@@ -24,17 +24,22 @@
                 </div>
                 <h2><?= $producto["name"] ?></h2>
                 <p><?= $producto["description"] ?>
-                    <!-- AQUI ME HE PARADO -->
                 <p class="price"><?= number_format($producto["price"], 2) ?>€</p>
                 <form method="post" action="17 - CarritoCompra?action=addToCart&id=<?= $idProducto ?>"
                     style="display: inline">
-                    <button class="btn btn-primary btn-sm">Añadir al carrito uwu</button>
-                    <p><?= $idProducto ?> </p>
+                    <button class="btn btn-primary btn-sm">Añadir al carrito</button>
+                    <p class="idproducto">ID: <?= $idProducto ?> </p>
                 </form>
             </div>
         <?php endforeach;
+        printCart();
         ?>
+    </div>
 
+    <div class="pricedetails">
+        <h2>Precio total: <?= cartPrice($productos) ?>€</h2>
+        <h3><a href="/17 - CarritoCompra?action=cart">Ver el carrito</a></h3>
+        <p class="encarrito">En carrito: <?= countCart() ?></p>
     </div>
 </body>
 

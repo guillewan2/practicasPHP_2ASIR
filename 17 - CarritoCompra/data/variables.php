@@ -1,4 +1,8 @@
 <?php
+
+
+
+
 $productos = [
     1 => [
         "name" => "Nico Yazawa - Movie Fanart",

@@ -22,8 +22,19 @@ if (isset($_GET['action'])){
             $id = htmlspecialchars($_GET['id']);
             addtoCart($id, $productos); // Funcion definida en functions.php
             require_once "templates/productos.php";
-            // USAR $_SERVER["REQUEST_URI"] y alguna funcion para limpiar la URL.
+            // ¿strtok?
             exit;
+        case 'delete':
+            $id = htmlspecialchars($_GET['id']);
+            deleteProduct($_SESSION['cart'],$id);
+            switch($_GET['from']){
+                case 'cart':
+                    require_once "templates/cart.php";
+                    exit;
+                default:
+                    break;
+            }
+
         default:
             require_once "templates/productos.php";
             break;
