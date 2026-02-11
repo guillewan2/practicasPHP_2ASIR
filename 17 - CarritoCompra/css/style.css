@@ -1,0 +1,297 @@
+/* * Guillermo Torres
+ * Date: Fri 30 Jan 2026
+ * Time: 18:35
+ * Description: Hoja de estilos para el carrito de compra (Grid Layout)
+ * Distribution: Arch Linux
+ */
+
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --accent-color: #2b6cb0;       /* Royal Blue */
+    --accent-hover: #2c5282;
+    --price-color: #2f855a;        /* Green */
+    --border-color: #e2e8f0;
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* --- Layout Principal de la Tienda --- */
+.tienda {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Grid responsivo moderno */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding-bottom: 80px; /* Espacio para el panel fixed inferior */
+}
+
+/* Título estilo Dashboard */
+.tienda h1, h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 2rem 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.tienda h1::after, h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* --- Tarjeta de Producto (Tipo Card) --- */
+.producto {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Imagen estilo cover */
+.imagen {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #edf2f7;
+    position: relative;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.producto:hover .imagen img {
+    transform: scale(1.05);
+}
+
+/* Detalles del producto */
+.producto h2 {
+    font-size: 1.15rem;
+    margin: 1rem 1rem 0.5rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.producto p {
+    padding: 0 1rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Precio destacado */
+.price {
+    font-size: 1.5rem;
+    color: var(--price-color) !important;
+    font-weight: 700;
+    text-align: right;
+    margin-top: auto;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: #fcfcfc;
+}
+
+/* --- Botones --- */
+form {
+    padding: 0 1rem 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+
+
+/* --- Detalle de Precio (Panel Inferior Fijo) --- */
+.pricedetails {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.pricedetails h2 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.pricedetails a {
+    color: white;
+    background: var(--price-color);
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pricedetails a:hover {
+    background-color: #276749;
+    transform: translateY(-1px);
+}
+
+/* Ocultar el contador de repeticiones si no se quiere mostrar feo */
+.pricedetails p {
+     margin-left: 20px;
+     font-size: 0.9rem;
+     color: var(--text-secondary);
+}
+
+/* --- Carrito de la Compra (Lista) --- */
+.cart-object {
+    background: var(--card-bg);
+    margin: 1rem auto;
+    max-width: 900px;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.cart-object:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-color);
+}
+
+.cart-object .imagen {
+    width: 120px;
+    height: 120px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+    background: white;
+}
+
+.cart-object h3 {
+    margin: 0 0 0.5rem 0;
+    flex-grow: 1;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.cart-object .description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 400px;
+    margin: 0;
+}
+
+.cart-object .productoscarro {
+    font-family: var(--font-main);
+    font-weight: 700;
+    color: var(--accent-color);
+    background: #ebf8ff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tienda {
+        padding-bottom: 120px; /* Más espacio para el panel en móvil si se apila */
+        grid-template-columns: 1fr;
+    }
+    
+    .pricedetails {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        bottom: 0;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .cart-object {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .cart-object .description {
+        max-width: 100%;
+    }
+}
