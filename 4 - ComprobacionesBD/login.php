@@ -46,6 +46,7 @@ foreach ($usuarios as $user => $pass) {
             color: #333;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1><?= $mensaje ?></h1>

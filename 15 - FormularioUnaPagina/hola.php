@@ -14,6 +14,7 @@
             color: #333;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1>Hola <?php echo htmlspecialchars($username); ?></h1>

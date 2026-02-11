@@ -34,6 +34,7 @@ $provinciaAndaluciaPoblacion = [
             margin: 10px 0;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1>Provincias de Andalucía</h1>

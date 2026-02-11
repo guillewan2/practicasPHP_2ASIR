@@ -7,7 +7,7 @@ require_once __DIR__ . '/../data/variables.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compra</title>
-    <link rel="stylesheet" href="/17 - CarritoCompra/css/style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 

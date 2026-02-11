@@ -49,6 +49,7 @@ $fullNames = array_combine($names, $surnames);
             border: 1px solid #ccc;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1>Listado de nombres con apellidos</h1>

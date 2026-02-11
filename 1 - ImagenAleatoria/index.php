@@ -39,6 +39,7 @@ $random_n = rand(0,1);
         }*/
         
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     

@@ -40,6 +40,7 @@ $randomArray = [
             text-decoration: underline;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h3>Array Indroducido: </h3>

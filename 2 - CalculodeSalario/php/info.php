@@ -72,6 +72,7 @@ endif;
             background-color: #f0f0f0;
         }
     </style>
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>

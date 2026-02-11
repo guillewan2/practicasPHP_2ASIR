@@ -44,6 +44,7 @@ for ($num = 2; $num <= $limite; $num++) {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1>Tus números primos hasta el <?= htmlspecialchars($limite) ?></h1>

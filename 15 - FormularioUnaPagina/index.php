@@ -10,7 +10,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     ];
 
     if (!array_key_exists($_POST['username'], $logininfo) || $logininfo[$_POST['username']] !== $_POST['password']) {
-        echo "Credenciales incorrectas. <a href=\"/52 - FormularioUnaPagina/index.php\">Inténtalo de nuevo</a>.";
+        echo "Credenciales incorrectas. <a href=\"/15 - FormularioUnaPagina/index.php\">Inténtalo de nuevo</a>.";
         exit;
     }
 

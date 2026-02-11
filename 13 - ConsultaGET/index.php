@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta GET</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
 <?php
 // Guillermo Torres
 // Date: Thu 08 Jan 2026
@@ -8,8 +17,11 @@
 //  Distribution: Arch Linux
 
 if (!isset($_GET['nombre'])) {
-    echo "No hay na";
+    echo "<h1>No hay na</h1>";
 } else {
     $nombre = filter_input(INPUT_GET, 'nombre', FILTER_SANITIZE_SPECIAL_CHARS);
-    echo "Hola, $nombre";
+    echo "<h1>Hola, $nombre</h1>";
 }
+?>
+</body>
+</html>

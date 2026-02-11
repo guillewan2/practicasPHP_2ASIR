@@ -82,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Si se detecta un envío por POST
             border: 1px solid #ccc;
         }
     </style>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h1>Contador de Frecuencia C/index.phpde Palabras</h1>

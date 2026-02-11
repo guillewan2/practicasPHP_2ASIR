@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
-    <link rel="stylesheet" href="/17 - CarritoCompra/css/style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <h2><?= $producto["name"] ?></h2>
                 <p><?= $producto["description"] ?>
                 <p class="price"><?= number_format($producto["price"], 2) ?>€</p>
-                <form method="post" action="17 - CarritoCompra?action=addToCart&id=<?= $idProducto ?>"
+                <form method="post" action="?action=addToCart&id=<?= $idProducto ?>"
                     style="display: inline">
                     <button class="btn btn-primary btn-sm">Añadir al carrito</button>
                     <p class="idproducto">ID: <?= $idProducto ?> </p>
