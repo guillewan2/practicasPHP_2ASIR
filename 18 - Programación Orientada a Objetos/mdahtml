@@ -1,0 +1,147 @@
+#!/bin/bash
+
+# Default input file
+INPUT_FILE="${1:-info.md}"
+OUTPUT_FILE="${INPUT_FILE%.*}.html"
+TITLE="Programación Orientada a Objetos"
+
+# Check if input file exists
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: File '$INPUT_FILE' not found."
+    exit 1
+fi
+
+echo "Converting $INPUT_FILE to $OUTPUT_FILE..."
+
+# Convert markdown to html using pandoc with embedded resources
+pandoc "$INPUT_FILE" \
+    --standalone \
+    --embed-resources \
+    --highlight-style pygments \
+    --metadata title="$TITLE" \
+    -o "$OUTPUT_FILE"
+
+if [ $? -eq 0 ]; then
+    echo "Pandoc conversion successful."
+else
+    echo "Pandoc conversion failed."
+    exit 1
+fi
+
+# Post-process HTML to add styles and scripts
+
+# 1. Inject link to style.css and remove default style block (partially, aimed at replacing the first style block)
+# We will use a temporary file for sed operations to be safe
+TEMP_FILE=$(mktemp)
+
+# Inject style.css link before the first <style> tag
+sed 's|<style>|  <link rel="stylesheet" href="../style.css" />\n  <style>|' "$OUTPUT_FILE" > "$TEMP_FILE" && mv "$TEMP_FILE" "$OUTPUT_FILE"
+
+# 2. Inject TFG Styles
+TFG_STYLES='
+  <style>
+    /* TFG / Document Layout Overrides */
+    body {
+        display: block !important;
+        max-width: 210mm !important;
+        margin: 40px auto !important;
+        padding: 2.54cm !important; /* Standard 1 inch margins */
+        background-color: var(--card-bg) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    /* Reset global alignments for document flow */
+    p, li {
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+        color: var(--accent-color);
+        margin-top: 2em;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+        font-size: 2.5em;
+    }
+    
+    /* Ensure images are visible and centered */
+    figure {
+        margin: 2rem auto;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        background-color: white; /* In case image has transparency */
+    }
+    
+    figcaption {
+        color: var(--text-muted);
+        font-style: italic;
+        margin-top: 0.5rem;
+    }
+    
+    /* Responsive adjustment */
+    @media (max-width: 210mm) {
+        body {
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            box-shadow: none;
+            border: none;
+        }
+    }
+  </style>
+'
+
+# Inject TFG styles before the closing </head> tag
+# We use perl for multi-line replacement as it handles newlines better than sed
+perl -i -0pe "s|</head>|$TFG_STYLES\n</head>|s" "$OUTPUT_FILE"
+
+
+# 3. Inject Mermaid Script
+MERMAID_SCRIPT='
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+'
+
+perl -i -0pe "s|</head>|$MERMAID_SCRIPT\n</head>|s" "$OUTPUT_FILE"
+
+# 4. Fix Mermaid Code Blocks
+# Convert <pre class="mermaid"><code>...</code></pre> to <div class="mermaid">...</div>
+
+# This requires a bit of care. We'll use sed to replace the opening tag
+sed -i 's|<pre class="mermaid"><code>|<div class="mermaid">|g' "$OUTPUT_FILE"
+# And the closing tag. Since </code></pre> is common, we might need context. 
+# However, mermaid blocks in pandoc output usually look like:
+# <pre class="mermaid"><code>graph TD;
+#     A-->B;
+# </code></pre>
+# So replacing </code></pre> with </div> IS risky unless we are sure it's a mermaid block.
+# Actually, if we just replace the start, the browser might handle the mismatched tags poorly, or standard CSS might break.
+# Better strategy: Read the file, if we find <div class="mermaid">, we expect the next </code></pre> to be the closer.
+# But for simplicity in this script, valid mermaid in markdown usually converts to:
+# <pre class="mermaid"><code> ... </code></pre>
+# We can try to replace `</code></pre>` with `</div>` ONLY if we just opened a mermaid div? No, sed doesn't hold state like that easily.
+
+# Let's rely on a slightly more robust perl regex for this specific pattern
+perl -i -0pe 's|<pre class="mermaid"><code>(.*?)</code></pre>|<div class="mermaid">$1</div>|gs' "$OUTPUT_FILE"
+
+echo "Done. $OUTPUT_FILE has been created with TFG styles and embedded resources."

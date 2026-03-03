@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Programación Orientada a Objetos</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* CSS for syntax highlighting */
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    .sourceCode {
+      overflow: visible;
+    }
+
+    code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    div.sourceCode {
+      margin: 1em 0;
+    }
+
+    pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    div.sourceCode {}
+
+    @media screen {
+      pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    code span.al {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Alert */
+    code span.an {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Annotation */
+    code span.at {
+      color: #7d9029;
+    }
+
+    /* Attribute */
+    code span.bn {
+      color: #40a070;
+    }
+
+    /* BaseN */
+    code span.bu {
+      color: #008000;
+    }
+
+    /* BuiltIn */
+    code span.cf {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* ControlFlow */
+    code span.ch {
+      color: #4070a0;
+    }
+
+    /* Char */
+    code span.cn {
+      color: #880000;
+    }
+
+    /* Constant */
+    code span.co {
+      color: #60a0b0;
+      font-style: italic;
+    }
+
+    /* Comment */
+    code span.cv {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* CommentVar */
+    code span.do {
+      color: #ba2121;
+      font-style: italic;
+    }
+
+    /* Documentation */
+    code span.dt {
+      color: #902000;
+    }
+
+    /* DataType */
+    code span.dv {
+      color: #40a070;
+    }
+
+    /* DecVal */
+    code span.er {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Error */
+    code span.ex {}
+
+    /* Extension */
+    code span.fl {
+      color: #40a070;
+    }
+
+    /* Float */
+    code span.fu {
+      color: #06287e;
+    }
+
+    /* Function */
+    code span.im {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    /* Import */
+    code span.in {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Information */
+    code span.kw {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* Keyword */
+    code span.op {
+      color: #666666;
+    }
+
+    /* Operator */
+    code span.ot {
+      color: #007020;
+    }
+
+    /* Other */
+    code span.pp {
+      color: #bc7a00;
+    }
+
+    /* Preprocessor */
+    code span.sc {
+      color: #4070a0;
+    }
+
+    /* SpecialChar */
+    code span.ss {
+      color: #bb6688;
+    }
+
+    /* SpecialString */
+    code span.st {
+      color: #4070a0;
+    }
+
+    /* String */
+    code span.va {
+      color: #19177c;
+    }
+
+    /* Variable */
+    code span.vs {
+      color: #4070a0;
+    }
+
+    /* VerbatimString */
+    code span.wa {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Warning */
+  </style>
+  <style>
+    /* TFG / Document Layout Overrides */
+    body {
+        display: block !important;
+        max-width: 210mm !important;
+        margin: 40px auto !important;
+        padding: 2.54cm !important; /* Standard 1 inch margins */
+        background-color: var(--card-bg) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    /* Reset global alignments for document flow */
+    p, li {
+        text-align: justify;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+        color: var(--accent-color);
+        margin-top: 2em;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+        font-size: 2.5em;
+    }
+    
+    /* Ensure images are visible and centered */
+    figure {
+        margin: 2rem auto;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        background-color: white; /* In case image has transparency */
+    }
+    
+    figcaption {
+        color: var(--text-muted);
+        font-style: italic;
+        margin-top: 0.5rem;
+    }
+    
+    /* Responsive adjustment */
+    @media (max-width: 210mm) {
+        body {
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 20px !important;
+            box-shadow: none;
+            border: none;
+        }
+    }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+
+<body>
+  <h1 id="programación-orientada-a-objetos">Programación Orientada a
+    Objetos</h1>
+  <p>Un programa orientado a objetos está hecho de archivos PHP que
+    declaran clases. Una clase se puede ver como una plantilla donde se
+    crean los objetos. Declarar una clase en PHP realmente no hace nada por
+    sí solo.</p>
+  <p>Hay gente que se refiere a un objeto como a una “instancia” de una
+    clase, ya que cada objeto es una manifestación de las características y
+    comportamientos que están definidos por la clase. Podemos decir que
+    “objeto” e “instancia” son sinónimos; un objeto en la memoria del
+    ordenador que se ha creado de una plantilla (la clase), con unos valores
+    y una capacidad de responder y ejecutar funciones.</p>
+  <figure>
+    <img src="ejemplo.jpg" alt="ejemplooreilly" />
+    <figcaption aria-hidden="true">ejemplooreilly</figcaption>
+  </figure>
+  <blockquote>
+    <p>Ejemplo del libro <a href="https://learning.oreilly.com/library/view/php-crash-course/9798341620049/">PHP
+        Crash Course</a> de O’Reilly</p>
+  </blockquote>
+  <p>Las variables definidas dentro de la clase son
+    <strong>propiedades</strong>. Las funciones declaradas dentro de la
+    clase se llaman <strong>métodos</strong>. Todo en conjunto se llama
+    <strong>miembro</strong>.
+  </p>
+  <p>En ese ejemplo, cada objeto creado de la clase “Cliente” tiene sus
+    propias propiedades pero tienen acceso a sus mismos métodos que están
+    definidos en la Clase.</p>
+  <h2 id="creación-de-relaciones-entre-objetos">Creación de relaciones
+    entre objetos</h2>
+  <p>Con la POO podemos crear relaciones entre objetos simplemente
+    vinculando una propiedad de un objeto con otro objeto. Se suelen
+    relacionar objetos de la misma clase. Por ejemplo, si una persona es
+    padre de otra persona.</p>
+  <p>Para evitar que se puedan editar los datos al gusto, podemos usar
+    <code>public</code>, <code>private</code>, o <code>protected</code> para
+    declarar distintos tipos de acceso a las propiedades y métodos de una
+    clase de objetos. Si queremos que no se pueda editar la edad del cliente
+    haciendola privada, podemos declarar un método <code>setAge()</code>
+    para actualizar la edad sólo si se cumplen algunos requisitos de
+    validación.
+  </p>
+  <h2 id="superclases-herencia-y-anulación">Superclases, Herencia y
+    anulación</h2>
+  <p>Podemos asignar propiedades y métodos que son comunes entre clases a
+    una superclase. Una superclase seria una clase generalizada de donde
+    otras clases pueden sacar características.</p>
+  <figure>
+    <img src="ejemplo2.jpg" alt="ejemplooreilly" />
+    <figcaption aria-hidden="true">ejemplooreilly</figcaption>
+  </figure>
+  <blockquote>
+    <p>Ejemplo del libro <a href="https://learning.oreilly.com/library/view/php-crash-course/9798341620049/">PHP
+        Crash Course</a> de O’Reilly</p>
+  </blockquote>
+  <p>Las superclases y la herencia permiten que no tengamos que duplicar
+    código entre clases.</p>
+  <p>En PHP, si queremos reemplazar un método símplemente tenemos que
+    declarar otra vez el método en la subclase para reemplazarlo.</p>
+  <h2 id="flujo-de-control-para-sistemas-orientados-a-objetos">Flujo de
+    control para sistemas orientados a objetos</h2>
+  <p>El flujo de control en un PHP procedural normalmente se lleva
+    mediante un controlador <code>index.php</code>, donde cuando se recibe
+    una petición HTTP, se ejecuta lo que se encuentre en ese archivo.</p>
+  <p>En una aplicación orientada a objetos, se mantiene el
+    <code>index.php</code>, pero tenemos que crear el objeto de la
+    aplicación principal.
+  </p>
+  <h2 id="ejemplo-de-declaración-de-clase">Ejemplo de declaración de
+    Clase</h2>
+  <div class="sourceCode" id="cb1">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Declaramos la clase Player</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Player</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">string</span> <span class="va">$name</span><span class="ot">;</span> <span class="co">// Propiedad: NOMBRE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">int</span> <span class="va">$highScore</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span> <span class="co">// Propiedad: PuntuacionAlta</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Por defecto highScore es 0 */</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> setName(<span class="dt">string</span> <span class="va">$name</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Función para cambiar el nombre, ya que el</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    string es privado </span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    */</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">$this</span>-&gt;name <span class="op">=</span> <span class="va">$name</span><span class="ot">;</span> <span class="co">// Se cambia el name del objeto a $name</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> setHighScore(<span class="dt">int</span> <span class="va">$newScore</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Función para cambiar la puntuación alta, ya</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">    que es privada</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">    */</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$newScore</span> <span class="op">&gt;</span> <span class="va">$this</span>-&gt;highScore) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="va">$this</span>-&gt;highScore <span class="op">=</span> <span class="va">$newScore</span><span class="ot">;</span> <span class="co">// Se cambia el highScore del objeto a $newScore</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">`$this` se refiere al objeto desde el que se ha llamado al método</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre>
+  </div>
+  <h1 id="creando-clases-y-objetos">Creando Clases y Objetos</h1>
+  <h2 id="creación-de-clases">Creación de Clases</h2>
+  <p>Una declaración de clase define las propiedades que cada objeto de la
+    clase va a tener y los métodos que podrán funcionar con cada una de las
+    propiedades.</p>
+  <p>La clase también establece las relaciones que puede tener con otras
+    clases (herencia).</p>
+  <p>Las clases se guardan en archivos PHP en el directorio del proyecto.
+    Lo suyo es declarar las clases en archivos separados, es decir, si
+    tenemos 3 clases, lo guardamos en 3 archivos distintos.</p>
+  <p>Para definir las clases, siempre se empieza por una mayúscula y sin
+    espacios. <code>Persona</code>, <code>Animal</code>,
+    <code>Centro</code>, etc.
+  </p>
+  <div class="sourceCode" id="cb2">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -- producto.php --</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Producto </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$nombre</span><span class="ot">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$precio</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Queremos que el objeto de precio tenga un valor por defecto de 0, por
+    lo que le podemos asignar a la propiedad un valor en la declaración de
+    la clase, como he hecho.</p>
+  <h2 id="creación-de-objetos">Creación de Objetos</h2>
+  <p>Para crear un objeto de una clase, usamos la palabra <code>new</code>
+    seguida del nombre de la clase.</p>
+  <div class="sourceCode" id="cb3">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">$producto1</span> <span class="op">=</span> <span class="kw">new</span> Producto()<span class="ot">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">$producto1</span>-&gt;nombre <span class="op">=</span> <span class="st">&quot;bolsa&quot;</span><span class="ot">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">?&gt;</span></span></code></pre>
+  </div>
+  <p>Usando <code>new Producto</code> creamos el nuevo objeto y devolvemos
+    una referencia a él que guardamos en la variable
+    <code>$producto1</code>.
+  </p>
+  <p><code>$producto1</code> no contiene el objeto ni la copia, sólo tiene
+    la referencia al objeto creada en la memoria del ordenador. Con
+    <code>-&gt;</code> nos referimos a la propiedad del objeto
+  </p>
+  <h2 id="propiedades-privadas-con-métodos-de-acceso-públicos">Propiedades
+    privadas con métodos de acceso públicos</h2>
+  <p>Cuando se declara como <code>private</code>, no se pueden acceder por
+    código fuera de la declaración de la clase, pero sí son accesibles por
+    los métodos. Con eso podemos reducir el riesgo de introducir propiedades
+    inválidas.</p>
+  <p>La visibilidad por defecto en los miembros de la clase es
+    <code>public</code> si no se declara nada, aunque es buena práctica usar
+    el <code>public</code> cuando se quiere decir que es público. Para
+    hacerlo privado usamos <code>private</code>.
+  </p>
+  <p>En casi todos los lenguajes de POO, se suelen usar los “getter” y
+    “setter”, que son métodos que sacan (get) o establecen (set)
+    información. Las propiedades según eso deberían ser como
+    <code>getName()</code>, <code>setAge()</code>. Para booleanos, es mejor
+    usar <code>is</code>, como <code>isPropertyName</code> en vez de
+    <code>getPropertyName</code>.
+  </p>
+  <p>Cuando se crean métodos, hay que tener en cuenta que se van a
+    ejecutar los mismos métodos en 0, 1, o miles de objetos, por lo que hay
+    que tener en cuenta eso. Las clases que están bien escritas se pueden
+    reusar.</p>
+  <blockquote>
+    <p>Hay editores como <strong>PHPStorm</strong> que te crean los getter y
+      setter</p>
+  </blockquote>
+  <h2 id="construct">__construct</h2>
+  <p>El método <code>__construct</code> es un método especial que se
+    ejecuta automáticamente cuando se crea un nuevo objeto de la clase. Se
+    suele usar para inicializar las propiedades del objeto con valores
+    específicos.</p>
+  <div class="sourceCode" id="cb4">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Producto </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$nombre</span><span class="ot">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$precio</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> <span class="bu">__construct</span>(<span class="dt">string</span> <span class="va">$nombre</span><span class="ot">,</span> <span class="dt">string</span> <span class="va">$precio</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">$this</span>-&gt;nombre <span class="op">=</span> <span class="va">$nombre</span><span class="ot">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">$this</span>-&gt;precio <span class="op">=</span> <span class="va">$precio</span><span class="ot">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>En este ejemplo, el método <code>__construct</code> toma dos
+    parámetros, <code>$nombre</code> y <code>$precio</code>, y los asigna a
+    las propiedades del objeto usando <code>$this-&gt;</code>. Cuando se
+    crea un nuevo objeto de la clase <code>Producto</code>, se pueden pasar
+    los valores para el nombre y el precio directamente al constructor:</p>
+  <div class="sourceCode" id="cb5">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">$producto1</span> <span class="op">=</span> <span class="kw">new</span> Producto(<span class="st">&quot;bolsa&quot;</span><span class="ot">,</span> <span class="st">&quot;10&quot;</span>)<span class="ot">;</span></span></code></pre>
+  </div>
+  <p>Esto creará un nuevo objeto <code>Producto</code> con el nombre
+    “bolsa” y el precio “10”. El método <code>__construct</code> es una
+    forma conveniente de asegurarse de que los objetos se inicializan
+    correctamente con los valores necesarios desde el momento en que se
+    crean.</p>
+  <h2 id="convertir-objeto-a-string">Convertir Objeto a String</h2>
+  <p>No tenemos que implementar una función <code>_toString()</code> para
+    cada clase, pero tenemos que si necesitamos cosas más complejas a lo
+    mejor habrá que hacerlo.</p>
+  <div class="sourceCode" id="cb6">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">print</span> <span class="va">$producto1</span></span></code></pre>
+  </div>
+  <h1 id="herencia">Herencia</h1>
+  <p>Permite que una o más clases (llamadas subclases) puedan tener las
+    mismas propiedades o métodos que otra clase llamada “superclase”.</p>
+  <p>La herencia simplifica el código al identificar y generalizar las
+    propiedades y métodos comunes a varias clases y colocarlos en una
+    superclase.</p>
+  <div class="sourceCode" id="cb7">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vehiculo</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$modelo</span><span class="ot">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Aquí la clase Vehículo es una clase que tiene propiedades comunes a
+    muchos tipos de vehículos. Podemos crear subclases que hereden de esta
+    clase para representar tipos específicos de vehículos, como coches,
+    motos, camiones, etc.</p>
+  <div class="sourceCode" id="cb8">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Ahora podemos crear un objeto cohce y darle los valores para cada una
+    de sus propiedades, las definidas en Coche y las que vienen de la
+    subclase Coche.</p>
+  <div class="sourceCode" id="cb9">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">$coche1</span> <span class="op">=</span> <span class="kw">new</span> Coche()<span class="ot">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">$coche1</span>-&gt;formaCuerpo<span class="op">=</span><span class="st">&#39;Sedan&#39;</span><span class="ot">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">$coche1</span>-&gt;modelo<span class="op">=</span><span class="st">&#39;Ford Mustang&#39;</span><span class="ot">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">$coche1</span>-&gt;pasajeros<span class="op">=</span><span class="dv">5</span><span class="ot">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="va">$coche1</span>-&gt;velocidadMaxima<span class="op">=</span><span class="dv">160</span><span class="ot">;</span></span></code></pre>
+  </div>
+  <p>Aqui dejo un esquema Mermaid de como podemos representar la herencia
+    entre clases. Se puede ver que la clase Coche hereda las propiedades de
+    la clase Vehiculo, y además tiene su propia propiedad formaCuerpo.
+    También barco hereda de vehículo y lanchaMotora hereda de barco, por lo
+    que lanchaMotora también hereda las propiedades de vehículo.</p>
+  <figure>
+    <img src="diagramaherencia.png" alt="Diagrama de Herencia" />
+    <figcaption aria-hidden="true">Diagrama de Herencia</figcaption>
+  </figure>
+  <h2 id="visibilidad-protegida">Visibilidad Protegida</h2>
+  <p>Cuando un método o propiedad se declara <code>protected</code>, se
+    convierte accesible para cualquier subclase de la clase en la que se ha
+    declarado, pero no es accesible desde fuera de la clase o sus subclases.
+    Esto permite que las subclases puedan usar y modificar los métodos y
+    propiedades protegidos de la superclase, pero evita que el código
+    externo pueda acceder a ellos directamente.</p>
+  <p>Es más restrictiva que pública, pero menos restrictiva que privada.
+    Es útil para permitir que las subclases tengan acceso a ciertos métodos
+    o propiedades sin exponerlos al código externo.</p>
+  <div class="sourceCode" id="cb10">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vehiculo</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$modelo</span><span class="ot">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>En este ejemplo, las propiedades <code>modelo</code>,
+    <code>pasajeros</code> y <code>velocidadMaxima</code> son protegidas, lo
+    que significa que solo pueden ser accedidas por la clase
+    <code>Vehiculo</code> y sus subclases, como <code>Coche</code>. El
+    código externo no podrá acceder a estas propiedades directamente, pero
+    las subclases podrán usarlas y modificarlas según sea necesario.
+  </p>
+  <p>Mantener la propiedad <code>private</code> en vez de
+    <code>protected</code> o <code>public</code> es una buena práctica para
+    encapsular los datos y proteger la integridad de los objetos, ya que
+    evita que el código externo pueda modificar directamente las propiedades
+    del objeto sin pasar por métodos de acceso controlados. Esto ayuda a
+    mantener la consistencia y seguridad de los datos dentro de la
+    clase.
+  </p>
+  <h2 id="clases-abstractas">Clases Abstractas</h2>
+  <p>Una clase abstracta es aquella que no se va a usar nunca para crear
+    objetos directamente. Se declaran para ser usadas como superclases de
+    otras clases. Por ejemplo, la clase <code>Vehiculo</code> podría ser una
+    clase abstracta, ya que no tiene sentido crear un objeto de tipo
+    <code>Vehiculo</code> directamente, sino que se usaría como base para
+    crear objetos de tipo <code>Coche</code>, <code>Barco</code>, etc.
+  </p>
+  <div class="mermaid">classDiagram
+    class Vehiculo {
+    &lt;&lt;abstract&gt;&gt;
+    -modelo: string
+    -pasajeros: string
+    -velocidadMaxima: float
+    }
+    class Coche {
+    +formaCuerpo: string
+    }
+    class Barco {
+    +tipo: string
+    }
+    class LanchaMotora {
+    +potencia: int
+    }
+    Vehiculo &lt;|-- Coche
+    Vehiculo &lt;|-- Barco
+    Barco &lt;|-- LanchaMotora</div>
+  <p>En este diagrama, <code>Vehiculo</code> es una clase abstracta que no
+    se puede instanciar directamente, pero sirve como base para las clases
+    <code>Coche</code>, <code>Barco</code> y <code>LanchaMotora</code>, que
+    heredan sus propiedades y pueden ser instanciadas para crear objetos
+    específicos de cada tipo de vehículo.
+  </p>
+  <p>En vez de poner <code>class Vehicle</code>, como no vamos a declarar
+    objetos de tipo <code>Vehiculo</code>, podemos poner
+    <code>abstract class Vehiculo</code> para indicar que es una clase
+    abstracta. Esto hace que el código sea más claro y evita que se puedan
+    crear objetos de tipo <code>Vehiculo</code> por error.
+  </p>
+  <div class="sourceCode" id="cb12">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> Vehiculo</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$modelo</span><span class="ot">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Ahora, si intentamos crear un objeto de la clase
+    <code>Vehiculo</code>, nos dará un error.
+  </p>
+  <pre><code>Fatal error: Uncaught Error: Cannot instantiate abstract class Vehiculo in ...</code></pre>
+  <h2 id="reemplazando-métodos-con-herencia">Reemplazando métodos con
+    herencia</h2>
+  <p>En algunos casos podríamos necesirtar cambiar cómo un método heredado
+    funciona en la subclase. Para eso, lo tenemos que
+    <strong>reemplazar</strong>. Sólo se hace definiendo el método
+    directamente en la subclase y dándole el mismo nombre que el método
+    heredado de la superclase.
+  </p>
+  <div class="sourceCode" id="cb14">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vehiculo</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$modelo</span><span class="ot">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> acelerar()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">echo</span> <span class="st">&quot;El vehículo está acelerando a su velocidad máxima de &quot;</span> <span class="op">.</span> <span class="va">$this</span>-&gt;velocidadMaxima <span class="op">.</span> <span class="st">&quot; km/h.&quot;</span><span class="ot">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> acelerar()</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">echo</span> <span class="st">&quot;El coche &quot;</span> <span class="op">.</span> <span class="va">$this</span>-&gt;modelo <span class="op">.</span> <span class="st">&quot; está acelerando a su velocidad máxima de &quot;</span> <span class="op">.</span> <span class="va">$this</span>-&gt;velocidadMaxima <span class="op">.</span> <span class="st">&quot; km/h.&quot;</span><span class="ot">;</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>En este ejemplo, la clase <code>Coche</code> reemplaza el método
+    <code>acelerar()</code> heredado de la clase <code>Vehiculo</code> con
+    su implementación específica adaptada para ESA clase.
+  </p>
+  <h2 id="aumentando-el-comportamiento-de-un-método-heredado">Aumentando
+    el comportamiento de un método heredado</h2>
+  <p>A veces, en vez de reemplazarlo entero, sólo queremos añadir algo al
+    método heredado. Para eso, podemos usar la palabra clave
+    <code>parent</code> para llamar al método de la superclase dentro del
+    método de la subclase.
+  </p>
+  <div class="sourceCode" id="cb15">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> acelerar()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    {        <span class="kw">parent</span>::acelerar()<span class="ot">;</span> <span class="co">// Llama al método acelerar() de la superclase Vehiculo</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">echo</span> <span class="st">&quot;¡El coche está acelerando!&quot;</span><span class="ot">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Aqui el método <code>acelerar()</code> de la clase Coche se ejecuta
+    primero gracias al <code>parent::acelerar()</code>, que llama al método
+    <code>acelerar()</code> de la clase <code>Vehiculo</code>, y luego se
+    ejecuta el código adicional que imprime “¡El coche está
+    acelerando!”.
+  </p>
+  <p>En vez de usar <code>parent::</code> para acceder al método de una
+    superclase, nos podemos referir a la superclase por su nombre. En este
+    caso, sería <code>Coche::</code>.</p>
+  <div class="sourceCode" id="cb16">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> acelerar()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    {        Coche::acelerar()<span class="ot">;</span> <span class="co">// Llama al método acelerar() de la superclase Vehiculo</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">echo</span> <span class="st">&quot;¡El coche está acelerando!&quot;</span><span class="ot">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>En este caso, <code>Coche::acelerar()</code> también llama al método
+    <code>acelerar()</code> de la clase <code>Coche</code>, pero usando el
+    nombre de la clase en lugar de <code>parent</code>.
+  </p>
+  <p>Normalmente se usa para crear constructores en subclases que llaman
+    al constructor de la superclase para asegurarse de que las propiedades
+    heredadas se inicializan correctamente.</p>
+  <div class="sourceCode" id="cb17">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> <span class="bu">__construct</span>(<span class="dt">string</span> <span class="va">$modelo</span><span class="ot">,</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">,</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">,</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">parent</span>::<span class="bu">__construct</span>(<span class="va">$modelo</span><span class="ot">,</span> <span class="va">$pasajeros</span><span class="ot">,</span> <span class="va">$velocidadMaxima</span>)<span class="ot">;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">$this</span>-&gt;formaCuerpo <span class="op">=</span> <span class="va">$formaCuerpo</span><span class="ot">;</span> </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <h2 id="prevención-de-subclasificaciones-y-anulaciones">Prevención de
+    Subclasificaciones y anulaciones</h2>
+  <p>En algunas situaciones, podemos no querer que una subclase se cree a
+    partir de una clase que hemos declarado. Para eso, podemos declarar la
+    clase con la palabra <code>final</code>, que indica que esa es la clase
+    FINAL y no se pueden crear subclases a partir de ella.</p>
+  <div class="sourceCode" id="cb18">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">final</span> <span class="kw">class</span> Coche <span class="kw">extends</span> Vehiculo</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">string</span> <span class="va">$formaCuerpo</span><span class="ot">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Lo suyo es sólo declarar clases o métodos como <code>final</code> si
+    realmente tenemos una justificación para hacerlo. Por ejemplo, si
+    tenemos una librería API, podemos declarar algunos métodos como
+    <code>final</code> para evitar que los usuarios de la API los reemplacen
+    y rompan la funcionalidad de la API.
+  </p>
+  <h3 id="método-final">Método final</h3>
+  <p>Si queremos que un método no se pueda reemplazar en las subclases,
+    podemos declararlo como <code>final</code> para que las subclasees no
+    puedan reemplazar los métodos pero permitiendo que se pueda seguir
+    heredando.</p>
+  <div class="sourceCode" id="cb19">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vehiculo</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$modelo</span><span class="ot">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">string</span> <span class="va">$pasajeros</span><span class="ot">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">protected</span> <span class="dt">float</span> <span class="va">$velocidadMaxima</span><span class="ot">;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">final</span> <span class="kw">public</span> <span class="kw">function</span> acelerar()</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">echo</span> <span class="st">&quot;El vehículo está acelerando a su velocidad máxima de &quot;</span> <span class="op">.</span> <span class="va">$this</span>-&gt;velocidadMaxima <span class="op">.</span> <span class="st">&quot; km/h.&quot;</span><span class="ot">;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Aquí, la función <code>acelerar()</code> no se podrá reemplazar en
+    ninguna subclase de <code>Vehículo</code>. Esto hará que el
+    funcionamiento de <code>acelerar()</code> sea el mismo en todas las
+    subclases.</p>
+  <p>((INTRODUCIR LINK A EJERCICIOS SUBCLASES))</p>
+  <h1 id="administración-de-clases-y-espacios-de-nombres-con-composer">Administración
+    de clases y espacios de nombres con Composer</h1>
+  <p>Cuando los proyectos de PHP se van haciendo cada vez más grandes,
+    puede ocurrir que haya una colisión de nombres o tener dos clases con el
+    mismo nombre. Para evitarlo, se usan los <em>namespaces</em>, que es una
+    solución que dan los lenguajes de programación orientados a objetos para
+    evitar la colisión de nombres.</p>
+  <p>Las colisiones de nombres pueden ocurrir en algunos casos:</p>
+  <ul>
+    <li>
+      <p>Intentar declarar una clase con el mismo nombre a una de las
+        clases ya existentes del lenguaje de PHP, como <code>Error</code>,
+        <code>Directory</code>, o <code>Generator</code>.
+      </p>
+    </li>
+    <li>
+      <p>Intentar declarar dos clases en distintos directorios</p>
+    </li>
+    <li>
+      <p>Combinar nuestras clases con clases de terceros.</p>
+    </li>
+  </ul>
+  <h2 id="namespaces"><code>Namespaces</code></h2>
+  <p>Se usan para prevenir colisiones de nombres. Las clases se organizan
+    en espacios de nombres y en subespacios de nombres.</p>
+  <pre><code>Espacionombre\Subespacio\Clase</code></pre>
+  <p><code>Espacionombre</code> sería el espaacio de nombres principal,
+    <code>Subespacio</code> sería un subespacio dentro del espacio de
+    nombres, y <code>Clase</code> sería la clase que se encuentra dentro del
+    subespacio.
+  </p>
+  <p>Las clases que están en el lenguaje de PHP se encuentran en el
+    espacio de nombres raíz.</p>
+  <h3 id="creación-de-espacios-de-nombres">Creación de espacios de
+    nombres</h3>
+  <p>Para crear un espacio de nombres, usamos la palabra
+    <code>namespace</code> seguida del nombre del espacio de nombres que
+    queremos crear. Por ejemplo:
+  </p>
+  <div class="sourceCode" id="cb21">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Osu<span class="ot">;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Player </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">string</span> <span class="va">$name</span><span class="ot">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">int</span> <span class="va">$highScore</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> setName(<span class="dt">string</span> <span class="va">$name</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">$this</span>-&gt;name <span class="op">=</span> <span class="va">$name</span><span class="ot">;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> setHighScore(<span class="dt">int</span> <span class="va">$newScore</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="va">$newScore</span> <span class="op">&gt;</span> <span class="va">$this</span>-&gt;highScore) {</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>            <span class="va">$this</span>-&gt;highScore <span class="op">=</span> <span class="va">$newScore</span><span class="ot">;</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <h3 id="usar-el-espacio-de-nombres">Usar el espacio de nombres</h3>
+  <p>Una vez la clase está declarada para estár en el espacio de nombres,
+    tenemos que informar a PHP de que es la clase que queremos usar. Se
+    puede hacer de dos maneras:</p>
+  <ul>
+    <li>La primera opción es usar el nombre del espacio cuando se crea el
+      objeto, como <code>new Osu\Player()</code>.</li>
+  </ul>
+  <div class="sourceCode" id="cb22">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">require_once</span> <span class="st">&#39;osu.php&#39;</span><span class="ot">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="va">$player1</span> <span class="op">=</span> <span class="kw">new</span> Osu\Player()<span class="ot">;</span></span></code></pre>
+  </div>
+  <ul>
+    <li>La segunda opción es usar el <code>use</code> antes de llamar a la
+      clase para importar el espacio de nombres:</li>
+  </ul>
+  <div class="sourceCode" id="cb23">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Osu\Player<span class="ot">;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">require_once</span> <span class="st">&#39;osu.php&#39;</span><span class="ot">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="va">$player1</span> <span class="op">=</span> <span class="kw">new</span> Player()<span class="ot">;</span></span></code></pre>
+  </div>
+  <h3 id="referenciando-espacios-de-nombre-en-declaraciones-de-clases">Referenciando
+    espacios de nombre en declaraciones de clases</h3>
+  <p>Cuando se trabaja dentro de un namespace definido, PHP asume que la
+    clase pertenece siempre al namespace actual. Con <code>\</code>
+    indicamos el espacio de nombres global (root). Para acceder a clases
+    integradas de PHP como <code>Datetime</code> desde un archivo con un
+    namespace, tendremos que usar <code>\Datetime</code> para referenciar la
+    clase desde el espacio de nombres global.</p>
+  <div class="sourceCode" id="cb24">
+    <pre class="sourceCode php"><code class="sourceCode php"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Osu<span class="ot">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Player </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">string</span> <span class="va">$name</span><span class="ot">;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">int</span> <span class="va">$highScore</span> <span class="op">=</span> <span class="dv">0</span><span class="ot">;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">function</span> getCurrentTime()</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">$currentTime</span> <span class="op">=</span> <span class="kw">new</span> \<span class="bu">DateTime</span>()<span class="ot">;</span> <span class="co">// Referencia a la clase DateTime del espacio de nombres global</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">$currentTime</span>-&gt;format(<span class="st">&#39;Y-m-d H:i:s&#39;</span>)<span class="ot">;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+  </div>
+  <p>Usar <code>use</code> es como si fuera un alias o importación al
+    inicio del archivo. Usando <code>use Osu;</code> podemos usar el
+    namespace de Osu sin tener que escribir <code>Osu\</code> cada vez que
+    queramos usar una clase de ese namespace.</p>
+  <div class="sourceCode" id="cb25">
+    <pre
+      class="sourceCode php"><code class="sourceCode php"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Osu<span class="ot">;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">require_once</span> <span class="st">&#39;osu.php&#39;</span><span class="ot">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="va">$player1</span> <span class="op">=</span> <span class="kw">new</span> Osu\Player()<span class="ot">;</span></span></code></pre>
+  </div>
+  <h2 id="composer">Composer</h2>
+  <p>Es un programa de línea de comandos para ayudar con la POO en PHP.
+    Ayuda con las clases y los archivos de declaración de funciones.
+    Facilita trabajar con clases de distintos espaacios de nombres.</p>
+  <p>(No entro aqui ahora)</p>
+  <h1 id="twig---motor-de-plantillas-para-php">Twig - Motor de plantillas
+    para PHP</h1>
+  <p>(NO entro aqui ahora)</p>
+  <h1 id="estructura-de-un-proyecto-orientado-a-objetos">Estructura de un
+    proyecto orientado a objetos</h1>
+  <p>(NO entro aqui ahora)</p>
+  <h1 id="error-handling---manejo-de-errores-en-php">ERROR HANDLING -
+    Manejo de errores en PHP</h1>
+  <p>Las aplicaciones no siempre funcionan como queremos, por eso tenemos
+    que usar excepciones.</p>
+  <p>Las excepciones son las clases que proporcionan información sobre los
+    errores que ocurren en el programa.</p>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+Este es un archivo de texto de prueba.
+Línea 2 del archivo txt.
+Leídos en la práctica de PHP.
